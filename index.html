@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rosetta Stone We're Missing | Robert Lewis | AAA 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─── RESET & ROOT ─────────────────────────────── */
+:root {
+  --gold:    #C9A84C;
+  --gold-lt: #E8C97A;
+  --blue:    #4A9EBF;
+  --red:     #C0392B;
+  --green:   #27AE60;
+  --bg:      #06060E;
+  --panel:   rgba(6,6,14,0.82);
+  --panel-lt:rgba(6,6,14,0.60);
+  --white:   #F0EDE4;
+  --muted:   #9A9490;
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Inter', system-ui, sans-serif;
+  --mono:    'Fira Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.reveal { font-family: var(--sans); background: var(--bg); color: var(--white); }
+.reveal .slides { text-align: left; }
+.reveal .slides section { height: 100%; }
+
+/* ─── TYPOGRAPHY ────────────────────────────────── */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
+  text-transform: none; text-shadow: none; line-height: 1.1;
+  color: var(--white); margin: 0;
+}
+.reveal h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+.reveal h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+.reveal h3 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
+.reveal p, .reveal li { font-family: var(--sans); font-size: clamp(0.9rem, 1.6vw, 1.2rem); line-height: 1.6; }
+.reveal .slides section { padding: 0; }
+
+/* ─── SLIDE WRAPPER ─────────────────────────────── */
+.slide-wrap {
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden; padding: 60px 80px;
+}
+.slide-wrap.centered { align-items: center; text-align: center; }
+.slide-wrap.split {
+  flex-direction: row; align-items: stretch; padding: 0; gap: 0;
+}
+
+/* ─── FULL-BLEED BACKGROUNDS ────────────────────── */
+.bg-full {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  z-index: 0;
+}
+.bg-overlay {
+  position: absolute; inset: 0; z-index: 1;
+}
+.overlay-dark  { background: linear-gradient(135deg, rgba(6,6,14,0.88) 0%, rgba(6,6,14,0.70) 100%); }
+.overlay-left  { background: linear-gradient(90deg, rgba(6,6,14,0.97) 40%, rgba(6,6,14,0.20) 100%); }
+.overlay-right { background: linear-gradient(270deg, rgba(6,6,14,0.97) 40%, rgba(6,6,14,0.20) 100%); }
+.overlay-bottom{ background: linear-gradient(0deg, rgba(6,6,14,0.98) 25%, rgba(6,6,14,0.30) 100%); }
+.overlay-vign  { background: radial-gradient(ellipse at center, rgba(6,6,14,0.10) 0%, rgba(6,6,14,0.85) 100%); }
+
+.slide-content { position: relative; z-index: 2; width: 100%; }
+.slide-content.half { width: 55%; }
+.slide-content.full { width: 100%; }
+
+/* ─── SLIDE LABELS ──────────────────────────────── */
+.slide-label {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.slide-label::before {
+  content: ''; display: inline-block; width: 32px; height: 2px;
+  background: var(--gold);
+}
+
+/* ─── GOLD ACCENT LINE ──────────────────────────── */
+.gold-line {
+  width: 64px; height: 4px; background: var(--gold);
+  margin: 18px 0;
+}
+.gold-line.center { margin: 18px auto; }
+
+/* ─── ACCENT TEXT ───────────────────────────────── */
+.text-gold  { color: var(--gold); }
+.text-blue  { color: var(--blue); }
+.text-muted { color: var(--muted); font-weight: 300; }
+.text-sm    { font-size: 0.85em; }
+.italic     { font-style: italic; }
+em { color: var(--gold-lt); font-style: italic; }
+strong { color: var(--white); font-weight: 600; }
+
+/* ─── QUOTE BLOCK ───────────────────────────────── */
+.pull-quote {
+  border-left: 4px solid var(--gold);
+  padding: 16px 24px; margin: 24px 0;
+  background: rgba(201,168,76,0.08);
+  border-radius: 0 6px 6px 0;
+}
+.pull-quote p { font-size: 1.15em; font-style: italic; color: var(--white); line-height: 1.55; }
+.pull-quote .attribution {
+  font-size: 0.78em; color: var(--gold); margin-top: 8px;
+  font-style: normal; font-family: var(--mono); letter-spacing: 0.08em;
+}
+
+/* ─── CARDS ─────────────────────────────────────── */
+.card-grid {
+  display: grid; gap: 16px; margin-top: 24px;
+}
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px; padding: 22px 20px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.card.gold::before  { background: var(--gold); }
+.card.blue::before  { background: var(--blue); }
+.card.red::before   { background: var(--red); }
+.card.green::before { background: var(--green); }
+
+.card-icon { font-size: 2rem; margin-bottom: 10px; }
+.card-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+.card-body  { font-size: 0.82rem; color: rgba(240,237,228,0.75); line-height: 1.5; }
+
+/* ─── DOMAIN PILLS (Slide 7) ─────────────────────── */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-top: 28px;
+}
+.domain-pill {
+  border-radius: 10px; padding: 18px 16px;
+  position: relative; overflow: hidden;
+}
+.domain-pill .pill-label {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;
+}
+.domain-pill .pill-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.domain-pill .pill-content { font-size: 0.75rem; color: rgba(240,237,228,0.80); line-height: 1.45; }
+.domain-pill .pill-effect { font-size: 0.72rem; margin-top: 8px; opacity: 0.65; font-style: italic; }
+
+.pill-self     { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #4A9EBF44; }
+.pill-threats  { background: linear-gradient(135deg, #2e1a1a 0%, #3e1616 100%); border: 1px solid #C0392B44; }
+.pill-coop     { background: linear-gradient(135deg, #1a2e1a 0%, #163e16 100%); border: 1px solid #27AE6044; }
+.pill-comp     { background: linear-gradient(135deg, #2e261a 0%, #3e2f16 100%); border: 1px solid #E67E2244; }
+.pill-mates    { background: linear-gradient(135deg, #2e1a2a 0%, #3e1636 100%); border: 1px solid #9B59B644; }
+.pill-kin      { background: linear-gradient(135deg, #1a2a2e 0%, #16363e 100%); border: 1px solid #1ABC9C44; }
+
+/* ─── EQUATION DISPLAY ──────────────────────────── */
+.equation {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; margin: 36px 0; flex-wrap: wrap;
+}
+.eq-box {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px; padding: 18px 28px; text-align: center; min-width: 160px;
+}
+.eq-box.gold-border { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.eq-box .eq-title { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px; }
+.eq-box .eq-value { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; }
+.eq-op { font-family: var(--serif); font-size: 2rem; color: var(--muted); }
+.eq-op.result { font-size: 1.4rem; color: var(--gold); }
+.eq-arrow { font-size: 2rem; color: var(--gold); }
+
+/* ─── NUMBER CARDS (Recs slide) ─────────────────── */
+.rec-list { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+.rec-item {
+  display: flex; gap: 24px; align-items: flex-start;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px; padding: 22px 24px;
+}
+.rec-num {
+  font-family: var(--serif); font-size: 2.8rem; font-weight: 900;
+  color: var(--gold); opacity: 0.35; line-height: 1; flex-shrink: 0;
+  width: 52px;
+}
+.rec-body { flex: 1; }
+.rec-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.rec-text { font-size: 0.87rem; color: rgba(240,237,228,0.78); line-height: 1.55; }
+
+/* ─── IMAGE PANELS ──────────────────────────────── */
+.img-panel {
+  flex: 1; background-size: cover; background-position: center;
+  background-repeat: no-repeat; position: relative;
+}
+.img-panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(6,6,14,0.95) 0%, rgba(6,6,14,0.0) 100%);
+}
+.text-panel {
+  flex: 0 0 52%; display: flex; flex-direction: column;
+  justify-content: center; padding: 64px 60px;
+  position: relative; z-index: 2;
+}
+
+/* ─── PROGRESS BAR ──────────────────────────────── */
+.reveal .progress { color: var(--gold); height: 3px; }
+.reveal .progress span { background: var(--gold); }
+
+/* ─── SLIDE COUNTER ─────────────────────────────── */
+.slide-counter {
+  position: absolute; bottom: 28px; right: 36px;
+  font-family: var(--mono); font-size: 0.68rem;
+  color: rgba(240,237,228,0.3); letter-spacing: 0.1em;
+  z-index: 10;
+}
+
+/* ─── FRAGMENT ANIMATIONS ───────────────────────── */
+.reveal .fragment { transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal .fragment.fade-up { transform: translateY(24px); opacity: 0; }
+.reveal .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+.reveal .fragment.highlight-gold.visible { color: var(--gold); }
+
+/* ─── TITLE SLIDE SPECIFICS ─────────────────────── */
+.title-eyebrow {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+}
+.title-main {
+  font-family: var(--serif); font-size: clamp(3rem, 6vw, 5.2rem);
+  font-weight: 900; line-height: 1.0; margin-bottom: 18px;
+}
+.title-sub {
+  font-family: var(--sans); font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--muted); font-weight: 300; margin-bottom: 40px; line-height: 1.5;
+}
+.title-speaker {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.title-speaker .name {
+  font-family: var(--sans); font-size: 1.1rem; font-weight: 600; color: var(--white);
+}
+.title-speaker .role {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.conference-tag {
+  display: inline-block; margin-top: 28px;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em;
+  color: rgba(240,237,228,0.35); text-transform: uppercase;
+}
+
+/* ─── MENDEL SPLIT ───────────────────────────────── */
+.mendel-portrait {
+  width: 200px; height: 240px;
+  background-image: url('slide_images/slide1_mendel_portrait.jpg');
+  background-size: cover; background-position: top center;
+  border-radius: 6px; flex-shrink: 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  border: 1px solid rgba(201,168,76,0.3);
+}
+.portrait-caption {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em;
+  color: var(--muted); margin-top: 10px; text-align: center;
+}
+.mendel-row {
+  display: flex; gap: 40px; align-items: flex-start;
+}
+
+/* ─── TIMELINE ───────────────────────────────────── */
+.timeline {
+  display: flex; flex-direction: column; gap: 0; margin-top: 20px;
+}
+.timeline-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding-bottom: 22px; position: relative;
+}
+.timeline-item:not(:last-child)::after {
+  content: ''; position: absolute; left: 20px; top: 42px; bottom: 0;
+  width: 2px; background: rgba(201,168,76,0.25);
+}
+.timeline-dot {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(201,168,76,0.12); border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.68rem; color: var(--gold);
+  flex-shrink: 0; font-weight: 600;
+}
+.timeline-content .year {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--gold);
+  letter-spacing: 0.1em; margin-bottom: 4px;
+}
+.timeline-content .event {
+  font-size: 0.9rem; line-height: 1.4; color: rgba(240,237,228,0.85);
+}
+
+/* ─── EXEC QUESTIONS (Slide 4) ─────────────────── */
+.exec-questions { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+.exec-q {
+  display: flex; flex-direction: column; gap: 6px;
+  background: rgba(255,255,255,0.04); border-radius: 8px;
+  border-left: 3px solid rgba(255,255,255,0.15); padding: 14px 18px;
+}
+.exec-q .q-text {
+  font-family: var(--serif); font-size: 1.1rem; font-style: italic;
+  color: var(--white);
+}
+.exec-q .q-hidden {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  color: var(--gold); opacity: 0;
+  transition: opacity 0.4s;
+}
+.exec-q.revealed .q-hidden { opacity: 1; }
+.exec-q.revealed { border-left-color: var(--gold); }
+
+/* ─── WARNING BOX ────────────────────────────────── */
+.warning-box {
+  background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.4);
+  border-radius: 8px; padding: 18px 22px; margin-top: 20px;
+}
+.warning-box p { color: rgba(240,237,228,0.9); font-size: 1rem; }
+
+/* ─── INSIGHT BOX ────────────────────────────────── */
+.insight-box {
+  background: rgba(201,168,76,0.10); border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 8px; padding: 18px 22px; margin-top: 20px;
+}
+.insight-box p { color: var(--white); font-size: 1.05rem; line-height: 1.55; }
+
+/* ─── BIG STAT ───────────────────────────────────── */
+.big-stat {
+  font-family: var(--serif); font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900; color: var(--gold); line-height: 1;
+}
+.big-stat-label {
+  font-size: 0.9rem; color: var(--muted); margin-top: 6px;
+}
+
+/* ─── CLOSING FOOTER ─────────────────────────────── */
+.closing-footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 60px;
+  background: rgba(6,6,14,0.85);
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(201,168,76,0.2);
+  z-index: 10;
+}
+.closing-footer span {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: rgba(240,237,228,0.35); letter-spacing: 0.1em;
+}
+
+/* ─── ANIMATED PULSE ─────────────────────────────── */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  50% { box-shadow: 0 0 20px 8px rgba(201,168,76,0.15); }
+}
+.pulse { animation: pulse-gold 3s ease infinite; }
+
+/* ─── GLOW UNDERLINE ─────────────────────────────── */
+.glow-text {
+  text-shadow: 0 0 30px rgba(201,168,76,0.4);
+}
+
+/* ─── HORIZONTAL RULE ────────────────────────────── */
+.hr { border: none; border-top: 1px solid rgba(255,255,255,0.10); margin: 20px 0; }
+
+/* ─── SUPERSTIMULI EXAMPLES ──────────────────────── */
+.stimuli-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-top: 20px;
+}
+.stimuli-cell {
+  border-radius: 8px; overflow: hidden; position: relative;
+  aspect-ratio: 1;
+}
+.stimuli-cell img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(30%);
+}
+.stimuli-cell .cell-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(6,6,14,0.92), transparent);
+  padding: 20px 10px 8px;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  color: var(--gold); text-transform: uppercase;
+}
+
+/* ─── ROSETTA STONE SECTION ──────────────────────── */
+.rosetta-wrap {
+  display: flex; gap: 40px; align-items: center;
+}
+.rosetta-img {
+  width: 280px; flex-shrink: 0;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+  border: 1px solid rgba(201,168,76,0.2);
+}
+.rosetta-img img { width: 100%; display: block; filter: sepia(20%); }
+
+/* ─── STEP FLOW ──────────────────────────────────── */
+.step-flow {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 28px; flex-wrap: wrap;
+}
+.step-box {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 12px 16px; text-align: center; flex: 1; min-width: 120px;
+}
+.step-box .step-n { font-family: var(--mono); font-size: 0.62rem; color: var(--gold); margin-bottom: 4px; }
+.step-box .step-t { font-size: 0.82rem; font-weight: 600; }
+.step-arrow { font-size: 1.4rem; color: var(--gold); flex-shrink: 0; }
+
+/* ─── CHAPTER MARKER ─────────────────────────────── */
+.chapter-marker {
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden;
+}
+.chapter-number {
+  font-family: var(--serif); font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 900; color: rgba(201,168,76,0.08);
+  line-height: 1; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -55%); pointer-events: none;
+}
+.chapter-label {
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.25em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+  position: relative; z-index: 2;
+}
+.chapter-title {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; position: relative; z-index: 2; max-width: 640px;
+}
+
+/* ─── ANIMATED GRADIENT BG ───────────────────────── */
+@keyframes gradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.grad-animate {
+  background: linear-gradient(-45deg, #06060E, #0d1117, #0f0d1a, #0a0f14);
+  background-size: 400% 400%;
+  animation: gradShift 12s ease infinite;
+}
+
+/* ─── BOTTOM LEGEND ──────────────────────────────── */
+.legend {
+  display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--muted); letter-spacing: 0.08em;
+}
+.legend-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ─── CLOSING SLIDE ──────────────────────────────── */
+.closing-headline {
+  font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; line-height: 1.2; max-width: 640px;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="fade">
+  <div class="slide-wrap centered grad-animate" style="padding: 60px 80px;">
+    <div class="bg-full" style="background-image:url('slide_images/slide1_pea_plants.jpg'); opacity:0.12;"></div>
+
+    <div class="slide-content full" style="text-align:center;">
+      <p class="title-eyebrow">AAA 2026 Pre-Conference · Austin, TX · March 26</p>
+      <h1 class="title-main glow-text">
+        The Rosetta Stone<br>
+        <span style="color:var(--gold);">We're Missing</span>
+      </h1>
+      <div class="gold-line center"></div>
+      <p class="title-sub" style="max-width:640px; margin:0 auto 32px;">
+        Why students need quantitative social science theory<br>
+        to unlock the full power of AI
+      </p>
+
+      <div style="display:flex; justify-content:center; gap:48px; margin-top:8px;">
+        <div class="title-speaker">
+          <span class="name">Robert Lewis, Ph.D.</span>
+          <span class="role">Senior AI Engineer · Precocity</span>
+          <span class="role" style="color:var(--muted); margin-top:2px;">Former Advertising Professor · UT Austin</span>
+        </div>
+      </div>
+      <span class="conference-tag">AI in Advertising Education · Session 1</span>
+    </div>
+    <div class="slide-counter">01 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 3 — CHAPTER MARKER: THE INDUSTRY GAP
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="fade" data-background-color="#06060E">
+  <div class="chapter-marker grad-animate">
+    <div class="chapter-number">I</div>
+    <p class="chapter-label">Part One</p>
+    <h2 class="chapter-title">The Industry Gap</h2>
+    <p style="color:var(--muted); font-size:1rem; margin-top:12px; max-width:420px; text-align:center; position:relative; z-index:2;">
+      What executives actually ask, and why neither data scientists nor academics are fully equipped to answer
+    </p>
+    <div class="slide-counter">02 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 4 — WHAT EXECUTIVES ACTUALLY ASK
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap" style="padding:0;">
+    <div class="bg-full" style="background-image:url('slide_images/slide2_audience_crowd.jpg');"></div>
+    <div class="bg-overlay overlay-left"></div>
+
+    <div class="text-panel" style="flex: 0 0 58%;">
+      <p class="slide-label">The Industry Gap</p>
+      <h2>What Executives<br><span class="text-gold">Actually Ask</span></h2>
+      <div class="gold-line"></div>
+
+      <div class="exec-questions" style="margin-top:20px;">
+        <div class="exec-q fragment fade-up">
+          <p class="q-text">"Is this character likable enough?"</p>
+          <p class="q-hidden">→ HIDDEN: Requires validated psychometric instrument mapping to evolved moral foundations</p>
+        </div>
+        <div class="exec-q fragment fade-up">
+          <p class="q-text">"What's the story DNA of why this works?"</p>
+          <p class="q-hidden">→ HIDDEN: Requires taxonomy of evolved psychological mechanisms in content</p>
+        </div>
+        <div class="exec-q fragment fade-up">
+          <p class="q-text">"Why does this campaign land emotionally?"</p>
+          <p class="q-hidden">→ HIDDEN: Requires theory of which stimuli activate which evolved systems</p>
+        </div>
+        <div class="exec-q fragment fade-up">
+          <p class="q-text">"Which of these scripts will perform?"</p>
+          <p class="q-hidden">→ HIDDEN: Requires domain-specific superstimuli load prediction model</p>
+        </div>
+      </div>
+
+      <div class="warning-box fragment fade-up" style="margin-top:20px;">
+        <p><strong>The structural problem:</strong> Data scientists are not usually trained in psychology or social science methods. Academics work from fragmented theories. Neither fully answers the question.</p>
+      </div>
+    </div>
+    <div class="slide-counter">03 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 5 — AI AMPLIFIES YOUR FRAMEWORK
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap grad-animate" style="padding:64px 80px;">
+
+    <div class="slide-content full">
+      <p class="slide-label">The Core Argument</p>
+      <h2>AI Amplifies<br><span class="text-gold">Your Framework</span></h2>
+      <div class="gold-line"></div>
+
+      <div class="equation fragment fade-up">
+        <div class="eq-box">
+          <div class="eq-title">Input</div>
+          <div class="eq-value">Weak Framework</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-box">
+          <div class="eq-title">Tool</div>
+          <div class="eq-value">Powerful AI</div>
+        </div>
+        <div class="eq-arrow">→</div>
+        <div class="eq-box" style="border-color:var(--red); background:rgba(192,57,43,0.10);">
+          <div class="eq-title">Output</div>
+          <div class="eq-value" style="color:var(--red);">Confident Wrong Answers</div>
+        </div>
+      </div>
+
+      <div class="equation fragment fade-up">
+        <div class="eq-box gold-border">
+          <div class="eq-title">Input</div>
+          <div class="eq-value" style="color:var(--gold);">Strong Theory + Methods</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-box">
+          <div class="eq-title">Tool</div>
+          <div class="eq-value">Powerful AI</div>
+        </div>
+        <div class="eq-arrow">→</div>
+        <div class="eq-box" style="border-color:var(--green); background:rgba(39,174,96,0.10);">
+          <div class="eq-title">Output</div>
+          <div class="eq-value" style="color:var(--green);">Scalable Insight</div>
+        </div>
+      </div>
+
+      <div class="card-grid cols-3 fragment fade-up" style="margin-top:28px;">
+        <div class="card gold">
+          <div class="card-icon">🎯</div>
+          <div class="card-title">It finds patterns in <em>what you measure</em></div>
+          <div class="card-body">Not in what matters. If your constructs are invalid, AI operationalizes the invalidity at scale.</div>
+        </div>
+        <div class="card blue">
+          <div class="card-icon">📐</div>
+          <div class="card-title">Latent constructs are invisible to the model</div>
+          <div class="card-body">An LLM's "likeability score" conflates warmth, competence, and moral purity. These are separable constructs with different effects.</div>
+        </div>
+        <div class="card red">
+          <div class="card-icon">⚠️</div>
+          <div class="card-title">The output looks authoritative</div>
+          <div class="card-body">This is the danger. Confident, fluent, sophisticated-looking outputs that are measuring the wrong things.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-counter">04 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 6 — CHAPTER MARKER: THE SOLUTION
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="fade" data-background-color="#06060E">
+  <div class="chapter-marker grad-animate">
+    <div class="chapter-number">II</div>
+    <p class="chapter-label">Part Two</p>
+    <h2 class="chapter-title">The Rosetta Stone</h2>
+    <p style="color:var(--muted); font-size:1rem; margin-top:12px; max-width:480px; text-align:center; position:relative; z-index:2;">
+      What measurement-ready theory actually looks like, and why entertainment science is the model
+    </p>
+    <div class="slide-counter">05 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 7 — THE SUPERSTIMULI FRAMEWORK
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap" style="padding:0;">
+    <div class="bg-full" style="background-image:url('slide_images/slide4_rosetta_stone.jpg');"></div>
+    <div class="bg-overlay overlay-right"></div>
+
+    <div style="position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-end;">
+      <div style="width:55%; padding: 64px 60px 64px 20px;">
+        <p class="slide-label">The Superstimuli Framework</p>
+        <h2>Entertainment is<br><span class="text-gold">Attention Technology</span></h2>
+        <div class="gold-line"></div>
+
+        <p style="margin-top:16px; font-size:0.95rem; color:rgba(240,237,228,0.85); line-height:1.6;" class="fragment fade-up">
+          Entertainment is not random. Animated characters get <em>cuter</em>. Monsters get <em>scarier</em>. Romantic leads more <em>idealized</em>. Editing <em>faster</em>. This is a directed evolutionary process.
+        </p>
+
+        <div class="pull-quote fragment fade-up" style="margin-top:18px;">
+          <p>Entertainment is a deliberately iterated technological system of <strong>superstimuli</strong>: unnaturally attention-grabbing stimuli that tap into evolved psychological mechanisms more intensely than natural stimuli.</p>
+          <p class="attribution">Lewis (under review) · Journal of Media Psychology</p>
+        </div>
+
+        <p style="margin-top:16px; font-size:0.88rem; color:rgba(240,237,228,0.75); line-height:1.55;" class="fragment fade-up">
+          Tinbergen's gulls preferred fake eggs with bigger spots over their own real eggs. Audiences prefer fictional threats that are bigger, villains more menacing, romances more idealized than anything in their actual lives.
+        </p>
+
+        <div class="insight-box fragment fade-up">
+          <p><strong>The key insight:</strong> Producers have been building superstimuli by trial and error for centuries. Theory tells us <em>which evolved systems</em> they're exploiting. And that tells us what to measure.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-counter">06 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 9 — FULL MECHANISM TAXONOMY (73 mechanisms)
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap grad-animate" style="padding:28px 44px 20px;">
+    <div class="slide-content full">
+      <!-- Header -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:7px;">
+        <div>
+          <p class="slide-label" style="margin-bottom:4px;">Dubourg et al., 2024 · Figure 23</p>
+          <h2 style="font-size:clamp(1.2rem,2.2vw,1.75rem);">73 Cognitive Mechanisms · <span class="text-gold">Full Taxonomy</span></h2>
+        </div>
+        <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(240,237,228,0.35);letter-spacing:0.1em;flex-shrink:0;padding-bottom:3px;">29 CONCEPTUAL · 44 MOTIVATIONAL · 6 DOMAINS</p>
+      </div>
+
+      <!-- CONCEPTUAL SECTION -->
+      <div style="margin-bottom:7px;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px 4px 0 0;padding:3px 10px 3px;">
+          <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:rgba(240,237,228,0.45);font-weight:600;">CONCEPTUAL MECHANISMS · rows 1–29 · detectors &amp; evaluators</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px;">
+          <!-- Col 1: rows 1–10 -->
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">1 · Predator detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">2 · Aggressor detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">3 · Pathogen detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">4 · Physical pain</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">5 · Intuitive physics</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">6 · Intuitive biology</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">7 · Theory of mind</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">8 · Explanation evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">9 · Technical efficiency evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">10 · Nutritional resources detector</p></div>
+          </div>
+          <!-- Col 2: rows 11–20 -->
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">11 · Landscape evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">12 · Social devaluation evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">13 · Humor appreciation</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">14 · Agency / Locus of control</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">15 · Competence evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">16 · Trustworthiness evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">17 · Warmth evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">18 · Resources evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">19 · Formidability evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">20 · Status evaluator</p></div>
+          </div>
+          <!-- Col 3: rows 21–29 -->
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">21 · Fairness / Free-rider detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">22 · Group member detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">23 · Coalitions evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">24 · Fertility detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">25 · Good genes evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">26 · Fidelity detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">27 · Cuteness detector</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">28 · Relatedness evaluator</p></div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:3px 7px;"><p style="font-size:0.62rem;color:rgba(240,237,228,0.65);">29 · Kin detector</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTIVATIONAL SECTION -->
+      <div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px 4px 0 0;padding:3px 10px;margin-bottom:4px;">
+          <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:rgba(240,237,228,0.45);font-weight:600;">MOTIVATIONAL MECHANISMS · rows 30–73 · drives &amp; emotions</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;">
+
+          <!-- SELF -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#4A9EBF22;border:1px solid #4A9EBF44;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#4A9EBF;font-weight:700;">SELF</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">9</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Hunger</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Thirst</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Feeling cold / hot</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Sleepiness / Fatigue</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Curiosity</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Skill acquisition</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Resource accumulation</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Resource foraging</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Simulation / Mental time travel</p></div>
+            </div>
+          </div>
+
+          <!-- THREATS -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#C0392B22;border:1px solid #C0392B44;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#E74C3C;font-weight:700;">THREATS</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">5</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Fear of predators</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Fear of aggressors</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Fear of heights</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Disgust</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Pain aversion</p></div>
+            </div>
+          </div>
+
+          <!-- COOPERATORS -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#27AE6022;border:1px solid #27AE6044;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#27AE60;font-weight:700;">COOPERATORS</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">15</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Pride</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Shame</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Moral pride</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Guilt</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Warmth</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Moral blame</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Moral praise</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Revenge</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Forgiveness</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Compassion</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Cooperative attraction</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Friendship</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Cringe / Embarrassment</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Reasoning</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Coalitional affiliation</p></div>
+            </div>
+          </div>
+
+          <!-- COMPETITORS -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#E67E2222;border:1px solid #E67E2244;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#E67E22;font-weight:700;">COMPETITORS</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">5</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Aggressiveness</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Status-seeking</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Envy / Jealousy</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Anger</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Hate / Schadenfreude</p></div>
+            </div>
+          </div>
+
+          <!-- MATES -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#9B59B622;border:1px solid #9B59B644;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#9B59B6;font-weight:700;">MATES</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">7</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Romantic attraction</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Sexual attraction</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Long-term love</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Desire for sexual variety</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Romantic jealousy</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Sexual jealousy</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Sexual disgust</p></div>
+            </div>
+          </div>
+
+          <!-- KIN -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="background:#1ABC9C22;border:1px solid #1ABC9C44;border-radius:4px 4px 0 0;padding:4px 8px;margin-bottom:3px;">
+              <p style="font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;color:#1ABC9C;font-weight:700;">KIN</p>
+              <p style="font-family:var(--mono);font-size:0.48rem;color:rgba(240,237,228,0.35);">3</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Kin sexual disgust</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Parental love</p></div>
+              <div style="background:rgba(255,255,255,0.05);border-radius:2px;padding:3px 6px;"><p style="font-size:0.6rem;color:rgba(240,237,228,0.7);">Familial love</p></div>
+            </div>
+          </div>
+
+        </div><!-- end motivational grid -->
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:7px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
+        <p style="font-family:var(--mono);font-size:0.55rem;color:rgba(240,237,228,0.3);letter-spacing:0.06em;">Source: Dubourg et al. (2024). The Cognitive Foundations of Fictional Stories. <em>Psychological Review.</em> Figure 23.</p>
+        <p style="font-family:var(--mono);font-size:0.55rem;color:var(--gold);letter-spacing:0.1em;">73 MECHANISMS · 6 DOMAINS</p>
+      </div>
+    </div>
+    <div class="slide-counter">07 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 10 — FROM THEORY TO AI (The Pipeline)
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap" style="padding:0;">
+    <div class="bg-full" style="background-image:url('slide_images/slide3_laptop_student.jpg');"></div>
+    <div class="bg-overlay overlay-left"></div>
+
+    <div class="text-panel" style="flex:0 0 56%;">
+      <p class="slide-label">Theory → AI · The Pipeline</p>
+      <h2>What Theory Enables<br><span class="text-gold">AI to Do</span></h2>
+      <div class="gold-line"></div>
+
+      <p style="margin-top:14px; font-size:0.92rem; color:rgba(240,237,228,0.80); line-height:1.6;">
+        Once you have structured psychological vocabulary, AI becomes genuinely powerful:
+      </p>
+
+      <div class="step-flow fragment fade-up">
+        <div class="step-box gold-border">
+          <p class="step-n">STEP 1</p>
+          <p class="step-t">Industry Question</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-box">
+          <p class="step-n">STEP 2</p>
+          <p class="step-t">Identify Psychological Construct</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-box">
+          <p class="step-n">STEP 3</p>
+          <p class="step-t">Select Measurement Approach</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-box" style="border-color:var(--green);">
+          <p class="step-n">STEP 4</p>
+          <p class="step-t">Deploy AI to Operationalize &amp; Scale</p>
+        </div>
+      </div>
+
+      <div class="card-grid cols-2 fragment fade-up" style="margin-top:22px;">
+        <div class="card gold">
+          <div class="card-title" style="font-size:0.95rem;">Ask an LLM to identify threat-domain superstimuli in a script</div>
+          <div class="card-body">Only possible if you know what "threat domain" means theoretically and what counts as a superstimulus in it.</div>
+        </div>
+        <div class="card blue">
+          <div class="card-title" style="font-size:0.95rem;">Train a classifier on validated psychometric items</div>
+          <div class="card-body">Character likeability maps onto moral foundations: care, fairness, loyalty, authority, purity. These are separable. Theory tells you so.</div>
+        </div>
+        <div class="card green" style="--green:#27AE60;">
+          <div class="card-title" style="font-size:0.95rem;">Build domain-specific content scorecards</div>
+          <div class="card-body">Predict cultivation effects from content features, deductively rather than inductively. AI can score at scale; theory tells it what to look for.</div>
+        </div>
+        <div class="card" style="border-color:rgba(255,255,255,0.1);">
+          <div class="card-title" style="font-size:0.95rem;">Measure what executives are intuiting</div>
+          <div class="card-body">"Story DNA" becomes a measurable superstimuli load profile across the 6 domains. AI operationalizes it. Theory validates it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-counter">08 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 10 — THREE CURRICULAR RECOMMENDATIONS
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="slide-wrap grad-animate" style="padding:56px 80px;">
+    <div class="slide-content full">
+      <p class="slide-label">Implications for Education</p>
+      <h2>Three Curricular<br><span class="text-gold">Recommendations</span></h2>
+      <div class="gold-line"></div>
+
+      <div class="rec-list" style="margin-top:24px;">
+        <div class="rec-item fragment fade-up">
+          <div class="rec-num">1</div>
+          <div class="rec-body">
+            <p class="rec-title">Teach psychometrics alongside AI tools</p>
+            <p class="rec-text">Students using AI for audience research need to understand latent constructs, measurement validity, and factor structure. Without this, they use AI to measure the wrong things more efficiently, at scale, with confidence.</p>
+          </div>
+        </div>
+        <div class="rec-item fragment fade-up">
+          <div class="rec-num">2</div>
+          <div class="rec-body">
+            <p class="rec-title">Give students unified theory, not just fragmented findings</p>
+            <p class="rec-text">The superstimuli framework subsumes character research, cultivation research, and body image research under one organizing mechanism. Instead of three separate literatures, students see the underlying unity and can apply AI across all of them simultaneously.</p>
+          </div>
+        </div>
+        <div class="rec-item fragment fade-up">
+          <div class="rec-num">3</div>
+          <div class="rec-body">
+            <p class="rec-title">Create AI + methods integration courses (not AI courses)</p>
+            <p class="rec-text">The skill to build: <em>given an industry question, identify the psychological construct, select the measurement approach, deploy AI to operationalize and scale it.</em> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-counter">09 / 10</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SLIDE 10 — THE CLOSE
+═══════════════════════════════════════════════════════════ -->
+<section data-transition="fade">
+  <div class="slide-wrap centered" style="padding:0;">
+    <div class="bg-full" style="background-image:url('slide_images/slide6_wheat_harvest.jpg');"></div>
+    <div class="bg-overlay overlay-vign"></div>
+    <div class="bg-overlay" style="background:rgba(6,6,14,0.72);"></div>
+
+    <div class="slide-content full" style="text-align:center; position:relative; z-index:2; padding:0 80px;">
+      <p class="slide-label" style="justify-content:center;">The Close</p>
+      <h2 class="closing-headline glow-text" style="margin:0 auto 20px;">
+        AI amplifies your framework.<br>
+        Make sure students<br>
+        <span class="text-gold">have one worth amplifying.</span>
+      </h2>
+      <div class="gold-line center"></div>
+
+      <div class="pull-quote fragment fade-up" style="max-width:640px; margin:24px auto;">
+        <p>Students who only learn AI tools will be operators. Students who also learn quantitative social science methods and proper psychological theory will be architects.</p>
+        <p class="attribution" style="margin-top:12px;">The advertising industry needs architects right now. Educators are in a position to train them.</p>
+      </div>
+
+      <div style="margin-top:32px;" class="fragment fade-up">
+        <p style="font-family:'Playfair Display', serif; font-size:clamp(2.8rem,6vw,5rem); font-style:italic; color:var(--gold); line-height:1; margin:0 0 18px; letter-spacing:0.02em;">Thank you.</p>
+        <p style="font-family:var(--mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.1em;">
+          Robert Lewis, Ph.D. · robert.lewis.msu@gmail.com · Precocity
+        </p>
+        <p style="font-family:var(--mono); font-size:0.65rem; color:rgba(240,237,228,0.3); margin-top:6px; letter-spacing:0.07em;">
+          "The Making of Media Entertainment" · under review, Journal of Media Psychology
+        </p>
+      </div>
+    </div>
+    <div class="slide-counter">10 / 10</div>
+  </div>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'fade',
+  transitionSpeed: 'slow',
+  backgroundTransition: 'fade',
+  controls: true,
+  controlsLayout: 'bottom-right',
+  progress: true,
+  slideNumber: false,
+  overview: true,
+  center: false,
+  touch: true,
+  loop: false,
+  fragments: true,
+  fragmentInURL: false,
+  keyboard: true,
+  embedded: false,
+  help: true,
+  width: '100%',
+  height: '100%',
+  margin: 0,
+  minScale: 0.6,
+  maxScale: 1.4,
+
+  // Animate exec-question reveals
+  // (handled by fragment system + custom JS below)
+});
+
+// Auto-reveal hidden psychological constructs when fragments appear
+Reveal.on('fragmentshown', function(event) {
+  const el = event.fragment;
+  if (el.classList.contains('fade-up')) {
+    const execQ = el.querySelector ? el.querySelector('.exec-q') : null;
+    if (execQ) execQ.classList.add('revealed');
+    // Also handle if the element itself is an exec-q child container
+    const parent = el.closest ? el.closest('.exec-q') : null;
+    if (parent) parent.classList.add('revealed');
+  }
+  // Reveal hidden psychological label on each exec-q fragment
+  if (el.classList.contains('exec-q')) {
+    el.classList.add('revealed');
+    // Delay the hidden label reveal slightly
+    setTimeout(() => {
+      const hidden = el.querySelector('.q-hidden');
+      if (hidden) hidden.style.opacity = '1';
+    }, 600);
+  }
+});
+
+// Keyboard shortcut: 'f' to go fullscreen
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+});
+</script>
+</body>
+</html>
